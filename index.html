@@ -383,8 +383,8 @@
   .gallery-header .gold-rule { margin: 1.5rem auto; }
 
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 0.6rem;
   }
 
@@ -395,6 +395,7 @@
     background: var(--dark3);
     aspect-ratio: 1;
     cursor: pointer;
+    width: 300px;
   }
 
   .gallery-item img {
