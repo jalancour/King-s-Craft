@@ -654,6 +654,22 @@
 
   .contact-item-text a:hover { color: var(--gold); }
 
+  .email-btn {
+    display: inline-block;
+    margin-top: 0.3rem;
+    background: var(--gold);
+    color: var(--dark) !important;
+    font-weight: 700 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.1rem;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .email-btn:hover { background: var(--gold-light); transform: translateY(-2px); color: var(--dark) !important; }
+
   .service-area {
     font-size: 0.82rem;
     color: var(--muted);
@@ -1102,7 +1118,7 @@
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
               <span class="label">Email</span>
-              <a href="mailto:kingscraft.fl@gmail.com">kingscraft.fl@gmail.com</a>
+              <a href="mailto:kingscraft.fl@gmail.com" class="email-btn">kingscraft.fl@gmail.com</a>
             </div>
           </div>
           <div class="contact-item">
