@@ -1120,6 +1120,9 @@
 
       <div class="quote-form-wrap reveal">
         <form class="quote-form" id="quoteForm" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="access_key" value="6355ae2e-cf1f-4c8d-a5e1-3060da5b6847" />
+          <input type="hidden" name="from_name" value="King's Craft Website" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="form-title">Free Quote Request</div>
           <p class="form-sub">We'll respond within 24 hours.</p>
 
@@ -1307,25 +1310,43 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
 
-  // ─── FORM SUBMIT ───
-  function handleSubmit(e) {
+  // ─── FORM SUBMIT (Web3Forms) ───
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('quoteForm');
     const success = document.getElementById('formSuccess');
-    form.style.display = 'none';
-    success.style.display = 'block';
+    const submitBtn = form.querySelector('.form-submit');
+    const originalBtnText = submitBtn.textContent;
 
-    // Build mailto link with form data
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
     const data = new FormData(form);
-    const name = `${data.get('firstName')} ${data.get('lastName')}`;
-    const phone = data.get('phone');
-    const email = data.get('email') || 'Not provided';
-    const service = data.get('service');
-    const desc = data.get('description');
-    const body = encodeURIComponent(
-      `Quote Request from ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nDetails:\n${desc}`
-    );
-    window.open(`mailto:kingscraft.fl@gmail.com?subject=Quote Request - ${encodeURIComponent(service)}&body=${body}`);
+    const service = data.get('service') || 'Quote Request';
+    data.set('subject', `New Quote Request — ${service}`);
+
+    // Attach the photos the user picked (they live in uploadedFiles, not in the input)
+    uploadedFiles.forEach((file, i) => {
+      data.append(`attachment_${i + 1}`, file, file.name);
+    });
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const json = await res.json();
+      if (json.success) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+      alert("Sorry, something went wrong sending your request. Please call or email us directly at kingscraft.fl@gmail.com or (772) 242-3683.");
+    }
   }
 
   // ─── TWEAKS ───
