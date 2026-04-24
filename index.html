@@ -383,9 +383,19 @@
 
   .service-card:hover { background: var(--dark3); }
 
+  .service-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,215,100,0.15);
+  }
+
   .service-icon {
     width: 44px;
     height: 44px;
+    flex-shrink: 0;
     background: rgba(255,215,100,0.08);
     border: 1px solid rgba(255,215,100,0.2);
     border-radius: 50%;
@@ -393,7 +403,6 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    margin-bottom: 1.25rem;
   }
 
   .service-card h3 {
@@ -401,9 +410,6 @@
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--off-white);
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(255,215,100,0.15);
   }
 
   .service-card ul {
@@ -1056,8 +1062,10 @@
     <div class="services-grid reveal">
 
       <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3>Installations &amp; Assembly</h3>
+        <div class="service-card-header">
+          <div class="service-icon">🔧</div>
+          <h3>Installations &amp; Assembly</h3>
+        </div>
         <ul>
           <li>Blinds, shades &amp; drapery</li>
           <li>Wall AC units &amp; appliances</li>
@@ -1069,8 +1077,10 @@
       </div>
 
       <div class="service-card">
-        <div class="service-icon">🪚</div>
-        <h3>Repairs, Replacements &amp; Cleaning</h3>
+        <div class="service-card-header">
+          <div class="service-icon">🪚</div>
+          <h3>Repairs, Replacements &amp; Cleaning</h3>
+        </div>
         <ul>
           <li>Walls, flooring &amp; doors</li>
           <li>Locks, trim &amp; paint</li>
@@ -1081,8 +1091,10 @@
       </div>
 
       <div class="service-card">
-        <div class="service-icon">🌿</div>
-        <h3>Outdoor Additions &amp; Maintenance</h3>
+        <div class="service-card-header">
+          <div class="service-icon">🌿</div>
+          <h3>Outdoor Additions &amp; Maintenance</h3>
+        </div>
         <ul>
           <li>Small deck construction</li>
           <li>Sheds up to 120 sq. ft.</li>
