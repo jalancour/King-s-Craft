@@ -456,8 +456,8 @@
   .gallery-header .gold-rule { margin: 1.5rem auto; }
 
   .gallery-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 0.6rem;
   }
 
@@ -468,7 +468,6 @@
     background: var(--dark3);
     aspect-ratio: 1;
     cursor: pointer;
-    width: 300px;
   }
 
   .gallery-item img {
@@ -1136,12 +1135,35 @@
     </div>
 
     <div class="gallery-grid reveal">
-      <div class="gallery-item" onclick="openLightbox(0, bookshelfPhotos)">
-        <img src="uploads/photos-1776946984747.PNG" alt="Custom bookshelf assembly" />
+      <div class="gallery-item" onclick="openLightbox(0, galleryPhotos)">
+        <img src="uploads/custom built ins.png" alt="Custom Built-Ins" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(1, galleryPhotos)">
+        <img src="uploads/Fixture replacements.png" alt="Fixture Replacements" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(2, galleryPhotos)">
+        <img src="uploads/Flagpole.png" alt="Flagpole Installation" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(3, galleryPhotos)">
+        <img src="uploads/lvp flooring.png" alt="LVP Flooring" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(4, galleryPhotos)">
+        <img src="uploads/tear down and removal.png" alt="Tear-Down & Removal" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(5, galleryPhotos)">
+        <img src="uploads/Toilet Replacement.png" alt="Toilet Replacement" />
+        <div class="gallery-zoom-icon">🔍</div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(6, galleryPhotos)">
+        <img src="uploads/tree trimming.png" alt="Tree Trimming" />
         <div class="gallery-zoom-icon">🔍</div>
       </div>
     </div>
-    <p style="text-align:center;color:var(--gold-dim);font-size:0.78rem;margin-top:1.5rem;letter-spacing:0.1em;text-transform:uppercase;">More photos coming soon · Send yours to kingscraft.fl@gmail.com</p>
   </div>
 </section>
 
@@ -1512,10 +1534,14 @@
 </div>
 
 <script>
-  const bookshelfPhotos = [
-    { src: 'uploads/photos-1776946984747.PNG', caption: 'Custom Bookshelf Assembly · Fort Pierce, FL' },
-    { src: 'uploads/photos-1776946991882.PNG', caption: 'Custom Bookshelf Assembly · Side View' },
-    { src: 'uploads/photos-1776947000145.PNG',  caption: 'Custom Bookshelf Assembly · Detail' },
+  const galleryPhotos = [
+    { src: 'uploads/custom built ins.png',        caption: 'Custom Built-Ins' },
+    { src: 'uploads/Fixture replacements.png',    caption: 'Fixture Replacements' },
+    { src: 'uploads/Flagpole.png',                caption: 'Flagpole Installation' },
+    { src: 'uploads/lvp flooring.png',            caption: 'LVP Flooring' },
+    { src: 'uploads/tear down and removal.png',   caption: 'Tear-Down & Removal' },
+    { src: 'uploads/Toilet Replacement.png',      caption: 'Toilet Replacement' },
+    { src: 'uploads/tree trimming.png',           caption: 'Tree Trimming' },
   ];
 
   let _gallery = [], _idx = 0;
