@@ -202,6 +202,36 @@
     margin-bottom: 2.5rem;
   }
 
+  .headshot-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .family-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-photo {
+    width: 100%;
+    border: 1px solid rgba(255,215,100,0.15);
+    display: block;
+  }
+
+  .photo-caption {
+    font-size: 0.72rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  @media (min-width: 600px) {
+    .headshot-wrap { float: right; width: 200px; margin: 0 0 1.5rem 2rem; }
+    .family-wrap { float: left; width: 240px; margin: 0 2rem 1.5rem 0; }
+  }
+
   .about-body p {
     font-size: 1rem;
     color: var(--muted);
@@ -361,7 +391,11 @@
   <h1>About King's Craft</h1>
   <div class="gold-rule"></div>
 
-  <div class="about-body">
+  <div class="about-body clearfix">
+    <div class="headshot-wrap">
+      <img src="uploads/Headshot.jpeg" alt="Jesse Lancour — Owner, King's Craft Handyman Services" class="about-photo" />
+      <p class="photo-caption">Jesse Lancour · Owner</p>
+    </div>
     <p>
       <strong>King's Craft Handyman Services</strong> is a professional handyman company based in
       Fort Pierce, Florida, owned and operated by <strong>Jesse Lancour</strong>. We serve renters,
@@ -393,6 +427,10 @@
       replacements, lawn maintenance, pressure washing, and outdoor additions. No job is too small.
     </p>
 
+    <div class="family-wrap">
+      <img src="uploads/Family Photo Nov 2025.jpg" alt="Jesse Lancour and family" class="about-photo" />
+      <p class="photo-caption">The Lancour Family · Nov 2025</p>
+    </div>
     <p>
       Jesse's vision for King's Craft goes beyond a decent salary for his family. The larger vision
       for the company is to become a handyman school. Young men will begin by apprenticing alongside
