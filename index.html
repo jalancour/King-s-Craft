@@ -497,7 +497,16 @@
     opacity: 0;
     transition: opacity 0.25s;
     background: rgba(15,14,12,0.35);
-    font-size: 1.4rem;
+  }
+
+  .gallery-zoom-icon::before {
+    content: '';
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    box-shadow: 3px 3px 0 1px var(--gold);
+    transform: rotate(-45deg);
   }
 
   .gallery-item:hover .gallery-zoom-icon { opacity: 1; }
@@ -1140,31 +1149,31 @@
     <div class="gallery-grid reveal">
       <div class="gallery-item" onclick="openLightbox(0, galleryPhotos)">
         <img src="uploads/custom built ins.png" alt="Custom Built-Ins" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(1, galleryPhotos)">
         <img src="uploads/Fixture replacements.png" alt="Fixture Replacements" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(2, galleryPhotos)">
         <img src="uploads/Flagpole.png" alt="Flagpole Installation" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(3, galleryPhotos)">
         <img src="uploads/lvp flooring.png" alt="LVP Flooring" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(4, galleryPhotos)">
         <img src="uploads/tear down and removal.png" alt="Tear-Down & Removal" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(5, galleryPhotos)">
         <img src="uploads/Toilet Replacement.png" alt="Toilet Replacement" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
       <div class="gallery-item" onclick="openLightbox(6, galleryPhotos)">
         <img src="uploads/tree trimming.png" alt="Tree Trimming" />
-        <div class="gallery-zoom-icon">🔍</div>
+        <div class="gallery-zoom-icon"></div>
       </div>
     </div>
   </div>
