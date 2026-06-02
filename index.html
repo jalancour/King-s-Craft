@@ -188,19 +188,22 @@
 
   .mobile-menu a:hover { color: var(--gold); background: rgba(255,215,100,0.04); }
 
-  .nav-phone {
+  .nav-contact-btns { display: flex; gap: 0.4rem; align-items: center; }
+
+  .nav-btn {
     font-family: var(--sans);
     font-weight: 600;
     color: var(--gold);
-    font-size: 0.95rem;
-    text-decoration: none;
+    font-size: 0.85rem;
+    background: transparent;
+    cursor: pointer;
     border: 1px solid var(--gold-dim);
-    padding: 0.45rem 1rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 3px;
     transition: background 0.2s, color 0.2s;
   }
 
-  .nav-phone:hover { background: var(--gold); color: var(--dark); }
+  .nav-btn:hover { background: var(--gold); color: var(--dark); }
 
   /* ─── HERO ─── */
   #hero {
@@ -335,29 +338,30 @@
 
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-  .hero-phone-big {
+  .hero-contact-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
     margin-top: 2.5rem;
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: var(--gold);
-    text-decoration: none;
     animation: fadeUp 1.4s ease both;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-    white-space: nowrap;
   }
 
-  .hero-phone-big:hover { color: var(--gold-light); }
-
-  .hero-phone-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
+  .hero-btn-cta {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid var(--gold-dim);
+    padding: 0.7rem 2rem;
+    border-radius: 3px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 0.3rem;
-    animation: fadeUp 1.45s ease both;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
+
+  .hero-btn-cta:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
 
   /* ─── SECTION SHARED ─── */
   section { padding: 6rem 2rem; }
@@ -1064,7 +1068,10 @@
     <li><a href="/about.html">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a class="nav-phone" href="tel:7722423683">(772) 242-3683</a>
+  <div class="nav-contact-btns">
+    <button class="nav-btn" onclick="kc_call()">Call</button>
+    <button class="nav-btn" onclick="kc_text()">Text</button>
+  </div>
   <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -1095,8 +1102,10 @@
     <a class="btn-outline" href="#services">See Our Services</a>
   </div>
 
-  <a class="hero-phone-big" href="tel:7722423683">(772) 242-3683</a>
-  <p class="hero-phone-label">Call or Text Anytime</p>
+  <div class="hero-contact-btns">
+    <button class="hero-btn-cta" onclick="kc_call()">Call</button>
+    <button class="hero-btn-cta" onclick="kc_text()">Text</button>
+  </div>
   <div style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;background:rgba(255,215,100,0.07);border:1px solid rgba(255,215,100,0.2);padding:0.45rem 1rem;border-radius:2px;">
     <span style="color:var(--gold);font-size:0.85rem;">✓</span>
     <span style="font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-light);">Commercial General Liability</span>
@@ -1247,13 +1256,6 @@
 
         <div class="contact-detail">
           <div class="contact-item">
-            <div class="contact-item-icon">📞</div>
-            <div class="contact-item-text">
-              <span class="label">Phone / Text</span>
-              <a href="tel:7722423683">(772) 242-3683</a>
-            </div>
-          </div>
-          <div class="contact-item">
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
               <span class="label">Email</span>
@@ -1368,8 +1370,6 @@
   <div class="footer-tagline">Honest Partnership · Diligent Service · Excellent Craft</div>
   <div class="footer-meta">
     Fort Pierce, FL · St. Lucie County and Surrounding Areas<br>
-    <a href="tel:7722423683" style="color:var(--gold-dim);text-decoration:none;">(772) 242-3683</a>
-    &nbsp;·&nbsp;
     <a href="mailto:kingscraft.fl@gmail.com" style="color:var(--gold-dim);text-decoration:none;">kingscraft.fl@gmail.com</a>
     <br><br>
     © 2026 King's Craft Florida LLC. All rights reserved.
@@ -1405,6 +1405,10 @@
 </div>
 
 <script>
+  // ─── CONTACT ───
+  function kc_call() { window.location.href = 'tel:+1' + ['772','242','3683'].join(''); }
+  function kc_text() { window.location.href = 'sms:+1' + ['772','242','3683'].join(''); }
+
   // ─── MOBILE MENU ───
   function toggleMenu() {
     const btn = document.getElementById('hamburger');
@@ -1511,7 +1515,7 @@
     } catch (err) {
       submitBtn.disabled = false;
       submitBtn.textContent = originalBtnText;
-      alert("Sorry, something went wrong sending your request. Please call or email us directly at kingscraft.fl@gmail.com or (772) 242-3683.");
+      alert("Sorry, something went wrong sending your request. Please email us directly at kingscraft.fl@gmail.com.");
     }
   }
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Outdoor Additions & Maintenance | King's Craft Handyman Services</title>
-<meta name="description" content="Outdoor handyman services in Fort Pierce, FL. Lawn care, pressure washing, decks, sheds, painting, gutters, awnings & more. Free estimates — call (772) 242-3683." />
+<meta name="description" content="Outdoor handyman services in Fort Pierce, FL. Lawn care, pressure washing, decks, sheds, painting, gutters, awnings & more. Free estimates available." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.kingscrafthandyman.com/outdoor.html" />
 <meta property="og:title" content="Outdoor Additions & Maintenance | King's Craft Handyman Services" />
@@ -52,8 +52,9 @@
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
-  .nav-phone { font-family: var(--sans); font-weight: 600; color: var(--gold); font-size: 0.95rem; text-decoration: none; border: 1px solid var(--gold-dim); padding: 0.45rem 1rem; border-radius: 3px; transition: background 0.2s, color 0.2s; }
-  .nav-phone:hover { background: var(--gold); color: var(--dark); }
+  .nav-contact-btns { display: flex; gap: 0.4rem; align-items: center; }
+  .nav-btn { font-family: var(--sans); font-weight: 600; color: var(--gold); font-size: 0.85rem; background: transparent; cursor: pointer; border: 1px solid var(--gold-dim); padding: 0.4rem 0.9rem; border-radius: 3px; transition: background 0.2s, color 0.2s; }
+  .nav-btn:hover { background: var(--gold); color: var(--dark); }
   .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.25rem; }
   .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--gold); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
   .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -95,7 +96,10 @@
     <li><a href="/about.html">About</a></li>
     <li><a href="/#contact">Contact</a></li>
   </ul>
-  <a class="nav-phone" href="tel:7722423683">(772) 242-3683</a>
+  <div class="nav-contact-btns">
+    <button class="nav-btn" onclick="kc_call()">Call</button>
+    <button class="nav-btn" onclick="kc_text()">Text</button>
+  </div>
   <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
 
@@ -174,8 +178,6 @@
   <div class="footer-tagline">Honest Partnership · Diligent Service · Excellent Craft</div>
   <div class="footer-meta">
     Fort Pierce, FL · St. Lucie County and Surrounding Areas<br>
-    <a href="tel:7722423683" style="color:var(--gold-dim);text-decoration:none;">(772) 242-3683</a>
-    &nbsp;·&nbsp;
     <a href="mailto:kingscraft.fl@gmail.com" style="color:var(--gold-dim);text-decoration:none;">kingscraft.fl@gmail.com</a>
     <br><br>
     © 2026 King's Craft Florida LLC. All rights reserved.
@@ -183,6 +185,8 @@
 </footer>
 
 <script>
+  function kc_call() { window.location.href = 'tel:+1' + ['772','242','3683'].join(''); }
+  function kc_text() { window.location.href = 'sms:+1' + ['772','242','3683'].join(''); }
   function toggleMenu() { document.getElementById('hamburger').classList.toggle('open'); document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMenu() { document.getElementById('hamburger').classList.remove('open'); document.getElementById('mobileMenu').classList.remove('open'); }
 </script>
