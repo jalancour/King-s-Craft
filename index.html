@@ -623,17 +623,54 @@
   .reviews-header { text-align: center; margin-bottom: 4rem; }
   .reviews-header .gold-rule { margin: 1.5rem auto; }
 
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .reviews-carousel { position: relative; padding: 0 3rem; }
+
+  .reviews-track {
+    display: flex;
     gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+
+  .reviews-track::-webkit-scrollbar { display: none; }
+
+  .review-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--dark3);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
+  }
+
+  .review-arrow:hover { background: var(--gold); color: var(--dark); }
+  .review-arrow.left { left: 0; }
+  .review-arrow.right { right: 0; }
+  .review-arrow:disabled { opacity: 0.25; cursor: default; }
+  .review-arrow:disabled:hover { background: var(--dark3); color: var(--gold); }
 
   .review-card {
     background: var(--dark3);
     border: 1px solid rgba(255,215,100,0.12);
     padding: 2rem;
     position: relative;
+    flex: 0 0 calc((100% - 4rem) / 3);
+    scroll-snap-align: start;
   }
 
   .review-card::before {
@@ -1219,7 +1256,9 @@
       <div class="gold-rule"></div>
     </div>
 
-    <div class="reviews-grid reveal">
+    <div class="reviews-carousel reveal">
+      <button class="review-arrow left" id="reviewPrev" aria-label="Previous reviews" onclick="slideReviews(-1)">‹</button>
+      <div class="reviews-track" id="reviewsTrack">
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
@@ -1239,6 +1278,20 @@
         <div class="review-author">— Barb Donaldson · Google Review · 5/19/2026</div>
       </div>
 
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Jessie did an excellent job with helping us install our ceiling fans and light fixtures. Everything looks and works great. Jessie is reliable and works with integrity and expertise. He gives so much more than what is needed. We will definitely call Jessie again when we need help with our home."</p>
+        <div class="review-author">— Suzette · Google Review · 5/18/2026</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Jesse did an excellent job handling some installation projects I needed assistance with. Courteous and prompt, he communicated well and I would highly recommend him!"</p>
+        <div class="review-author">— Ashley L. · Google Review · 5/18/2026</div>
+      </div>
+
+      </div>
+      <button class="review-arrow right" id="reviewNext" aria-label="More reviews" onclick="slideReviews(1)">›</button>
     </div>
   </div>
 </section>
@@ -1421,6 +1474,33 @@
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileMenu').classList.remove('open');
   }
+
+  // ─── REVIEWS CAROUSEL ───
+  function slideReviews(dir) {
+    const track = document.getElementById('reviewsTrack');
+    const card = track.querySelector('.review-card');
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 32;
+    const step = card.getBoundingClientRect().width + gap;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+
+  function updateReviewArrows() {
+    const track = document.getElementById('reviewsTrack');
+    if (!track) return;
+    const prev = document.getElementById('reviewPrev');
+    const next = document.getElementById('reviewNext');
+    const maxScroll = track.scrollWidth - track.clientWidth - 1;
+    prev.disabled = track.scrollLeft <= 0;
+    next.disabled = track.scrollLeft >= maxScroll;
+  }
+
+  (function initReviewArrows() {
+    const track = document.getElementById('reviewsTrack');
+    if (!track) return;
+    track.addEventListener('scroll', updateReviewArrows, { passive: true });
+    window.addEventListener('resize', updateReviewArrows);
+    updateReviewArrows();
+  })();
 
   // ─── PHOTO UPLOAD ───
   let uploadedFiles = [];
