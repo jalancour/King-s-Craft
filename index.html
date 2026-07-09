@@ -51,7 +51,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --gold: oklch(72% 0.13 82);
@@ -1027,6 +1027,63 @@
   }
 
   /* ─── RESPONSIVE ─── */
+  /* ─── QUOTE PAUSED (temporary booking closure) ─── */
+  .quote-paused { position: relative; display: inline-block; }
+  .quote-paused.quote-paused-block { display: block; }
+  .quote-paused .cta-dimmed { opacity: 0.4; filter: grayscale(55%); pointer-events: none; user-select: none; }
+
+  .spray-x {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 132%;
+    height: 160%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .quote-paused-block .spray-x { width: 110%; height: 112%; }
+
+  .postit-note {
+    position: absolute;
+    background: #f7e46b;
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.04));
+    color: #2c2408;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.2) inset;
+    z-index: 7;
+    text-align: center;
+    pointer-events: none;
+  }
+  .postit-note::before {
+    content: '';
+    position: absolute;
+    top: -9px; left: 50%;
+    width: 38px; height: 18px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.5);
+    transform: translateX(-50%) rotate(-4deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+  .postit-note.small {
+    font-size: 1.15rem;
+    padding: 0.6rem 0.7rem 0.8rem;
+    width: 128px;
+    top: -2.6rem;
+    right: -3rem;
+    transform: rotate(-6deg);
+  }
+  .postit-note.large {
+    font-size: 1.4rem;
+    padding: 1.3rem 1.5rem 1.6rem;
+    width: 250px;
+    top: -2.6rem;
+    right: -1.5rem;
+    transform: rotate(-5deg);
+  }
+
   @media (max-width: 768px) {
     nav { padding: 0.9rem 1.25rem; }
     .nav-links { display: none; }
@@ -1035,6 +1092,8 @@
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     .form-row { grid-template-columns: 1fr; }
     section { padding: 4rem 1.25rem; }
+    .postit-note.small { font-size: 1rem; width: 104px; top: -2.2rem; right: -0.8rem; padding: 0.45rem 0.55rem 0.65rem; }
+    .postit-note.large { top: -3.2rem; left: 50%; right: auto; transform: translateX(-50%) rotate(-3deg); width: 88%; max-width: 300px; font-size: 1.2rem; }
   }
 
   @media (max-width: 480px) {
@@ -1044,6 +1103,15 @@
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="spray" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
 
 <!-- NAV -->
 <nav>
@@ -1087,7 +1155,23 @@
   </div>
 
   <div class="hero-cta-row">
-    <a class="btn-primary" href="#contact">Get a Free Quote</a>
+    <div class="quote-paused">
+      <a class="btn-primary cta-dimmed" href="#contact" tabindex="-1" aria-disabled="true">Get a Free Quote</a>
+      <svg class="spray-x" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
+        <g filter="url(#spray)">
+          <line x1="16" y1="12" x2="184" y2="118" stroke="#dc1c1c" stroke-width="14" stroke-linecap="round" />
+          <line x1="184" y1="12" x2="16" y2="118" stroke="#c81616" stroke-width="14" stroke-linecap="round" />
+        </g>
+        <circle cx="24" cy="20" r="3" fill="#d81c1c" opacity="0.85" />
+        <circle cx="30" cy="34" r="1.6" fill="#c81616" opacity="0.7" />
+        <circle cx="176" cy="18" r="2.4" fill="#d81c1c" opacity="0.8" />
+        <circle cx="168" cy="30" r="1.4" fill="#c81616" opacity="0.6" />
+        <circle cx="20" cy="112" r="2.2" fill="#c81616" opacity="0.75" />
+        <circle cx="180" cy="108" r="2.8" fill="#d81c1c" opacity="0.8" />
+        <circle cx="188" cy="118" r="1.5" fill="#c81616" opacity="0.6" />
+      </svg>
+      <div class="postit-note small">Booked until Aug 26</div>
+    </div>
     <a class="btn-outline" href="#services">See Our Services</a>
   </div>
 
@@ -1284,7 +1368,8 @@
         </div>
       </div>
 
-      <div class="quote-form-wrap reveal">
+      <div class="quote-paused quote-paused-block reveal">
+      <div class="quote-form-wrap cta-dimmed">
         <form class="quote-form" id="quoteForm" onsubmit="handleSubmit(event)">
           <input type="hidden" name="access_key" value="6355ae2e-cf1f-4c8d-a5e1-3060da5b6847" />
           <input type="hidden" name="from_name" value="King's Craft Website" />
@@ -1350,12 +1435,27 @@
             <textarea name="description" required placeholder="Tell us a little about what you need done, any relevant measurements, and your preferred timeline..."></textarea>
           </div>
 
-          <button type="submit" class="form-submit">Send My Quote Request →</button>
+          <button type="submit" class="form-submit" disabled aria-disabled="true">Send My Quote Request →</button>
         </form>
         <div class="form-success" id="formSuccess">
           ♛ Thank you!<br>
           <span style="font-size:1rem;font-family:var(--sans);font-weight:400;color:var(--muted)">We'll be in touch within 24 hours.</span>
         </div>
+      </div>
+      <svg class="spray-x" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
+        <g filter="url(#spray)">
+          <line x1="14" y1="10" x2="186" y2="120" stroke="#dc1c1c" stroke-width="12" stroke-linecap="round" />
+          <line x1="186" y1="10" x2="14" y2="120" stroke="#c81616" stroke-width="12" stroke-linecap="round" />
+        </g>
+        <circle cx="22" cy="18" r="3" fill="#d81c1c" opacity="0.85" />
+        <circle cx="28" cy="32" r="1.6" fill="#c81616" opacity="0.7" />
+        <circle cx="178" cy="16" r="2.4" fill="#d81c1c" opacity="0.8" />
+        <circle cx="170" cy="28" r="1.4" fill="#c81616" opacity="0.6" />
+        <circle cx="18" cy="114" r="2.2" fill="#c81616" opacity="0.75" />
+        <circle cx="182" cy="110" r="2.8" fill="#d81c1c" opacity="0.8" />
+        <circle cx="190" cy="120" r="1.5" fill="#c81616" opacity="0.6" />
+      </svg>
+      <div class="postit-note large">Currently Booked. Will begin taking inquiries again on August 26th, sorry for the inconvenience!</div>
       </div>
 
     </div>
@@ -1406,6 +1506,11 @@
   // ─── CONTACT ───
   function kc_call() { window.location.href = 'tel:+1' + ['772','237','1170'].join(''); }
   function kc_text() { window.location.href = 'sms:+1' + ['772','237','1170'].join(''); }
+
+  // ─── QUOTE FORM PAUSED — disable fields for keyboard/screen-reader users ───
+  document.querySelectorAll('.quote-form-wrap.cta-dimmed input, .quote-form-wrap.cta-dimmed select, .quote-form-wrap.cta-dimmed textarea').forEach(el => {
+    el.disabled = true;
+  });
 
   // ─── MOBILE MENU ───
   function toggleMenu() {
