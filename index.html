@@ -627,6 +627,7 @@
 
   .reviews-track {
     display: flex;
+    align-items: flex-start;
     gap: 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -697,8 +698,51 @@
     color: var(--off-white);
     font-style: italic;
     line-height: 1.7;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
   }
+
+  .review-text.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .review-more-btn {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .review-more-btn:hover { color: var(--gold-light); }
+
+  .google-reviews-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 1px solid var(--gold-dim);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .google-reviews-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
   .review-author {
     font-size: 0.8rem;
@@ -1291,6 +1335,7 @@
       <span class="section-label">What Clients Say</span>
       <h2>Customer Reviews</h2>
       <div class="gold-rule"></div>
+      <a class="google-reviews-link" href="https://www.google.com/maps/place/King's+Craft+Handyman+Services/@27.4259341,-80.3970569,13.91z/data=!4m10!1m2!2m1!1sking's+craft!3m6!1s0x2167b775f5f79635:0xf510ffe65c8ec37d!8m2!3d27.4286561!4d-80.3597358!15sCgxraW5nJ3MgY3JhZnSSAQhoYW5keW1hbuABAA!16s%2Fg%2F11nhbl22k1?entry=ttu&g_ep=EgoyMDI2MDcyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">View Reviews on Google</a>
     </div>
 
     <div class="reviews-carousel reveal">
@@ -1300,42 +1345,49 @@
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"We're so grateful we found Jesse with King's Craft. He has been a huge part of rebuilding our tiny home, helping us with everything from painting and plumbing to carpentry. Every project has been done with care, excellence, and attention to detail. Jesse is not only incredibly skilled, but he's also one of the most organized, dependable, and trustworthy people we've worked with. He's always on time, communicates well, and genuinely cares about doing the job right. It's obvious he cares about serving his clients well, not just finishing the work. It's refreshing to find someone who takes so much pride in his craftsmanship and treats your home with respect. We wholeheartedly recommend King's Craft and will absolutely continue calling Jesse for future projects."</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Alexandria R. · Google Review · 7/21/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jesse is very thorough and always leaves everything as he found it cleaning up after his work. He is prompt and fair. I would recommend him anytime."</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Trisch P. · Google Review · 6/15/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jesse painted my master bedroom and did a great job! Very soon I will have him do my master bath and kitchen, can't wait! Excellent communication, came when he said he would and left my place looking great! I would highly recommend King's Craft Handyman's Services!!! 🙏🏻✝️❤️"</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Linda F. · Google Review · 6/1/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jesse is a man of integrity that you can trust. That is so important in this day and age. He is a straight shooter, works hard, and gets things done in a timely manner. He is innovative to get the job done with excellence and is honest and fair. I would recommend him."</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Rachel H. · Google Review · 5/19/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jesse is an amazing handyman! Very knowledgeable and detail oriented. I have used him for many different projects and he is timely and finishes within the time he told me. He is very neat and cleans up everything before he goes."</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Barb D. · Google Review · 5/19/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jessie did an excellent job with helping us install our ceiling fans and light fixtures. Everything looks and works great. Jessie is reliable and works with integrity and expertise. He gives so much more than what is needed. We will definitely call Jessie again when we need help with our home."</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Suzette · Google Review · 5/18/2026</div>
       </div>
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Jesse did an excellent job handling some installation projects I needed assistance with. Courteous and prompt, he communicated well and I would highly recommend him!"</p>
+        <button class="review-more-btn" onclick="toggleReview(this)">View full review</button>
         <div class="review-author">— Ashley L. · Google Review · 5/18/2026</div>
       </div>
 
@@ -1555,6 +1607,28 @@
     window.addEventListener('resize', updateReviewArrows);
     updateReviewArrows();
   })();
+
+  function toggleReview(btn) {
+    const text = btn.previousElementSibling;
+    const expanded = text.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Show less' : 'View full review';
+  }
+
+  function updateReviewClamps() {
+    document.querySelectorAll('.review-card').forEach(card => {
+      const text = card.querySelector('.review-text');
+      const btn = card.querySelector('.review-more-btn');
+      if (!text || !btn || text.classList.contains('expanded')) return;
+      btn.style.display = text.scrollHeight > text.clientHeight + 1 ? 'block' : 'none';
+    });
+  }
+
+  window.addEventListener('load', updateReviewClamps);
+  let reviewClampResize;
+  window.addEventListener('resize', () => {
+    clearTimeout(reviewClampResize);
+    reviewClampResize = setTimeout(updateReviewClamps, 200);
+  });
 
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
